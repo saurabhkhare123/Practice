@@ -31,6 +31,61 @@ public class SinglyLinkedList {
         }
         return count;
     }
+
+    //to insert data at the beginning of a Singly Linked List
+    public  void insertFirst(int value){
+        ListNode newNode = new ListNode(value); //creating new object that you wanna make the head
+        newNode.next = head; // connecting the new node to the list
+        head = newNode; //making that new node the head of the list
+
+    }
+
+    //to insert the node at the end of the list
+    public  void insertLast(int value){
+        ListNode newNode = new ListNode(value);
+        if(head==null){
+            head = newNode;
+            return;
+
+        }
+        ListNode current = head;
+        while(current.next!=null){
+            current = current.next;
+        }
+        current.next = newNode;
+
+    }
+
+    //to delete the first node
+    public ListNode deleteFirst(){
+        if(head==null){
+            return null;
+        }
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+        return temp;
+    }
+
+    //to delete the Last Node
+    public ListNode deleteLast(){
+        if(head==null || head.next== null ){
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        while(current.next!= null){
+            previous = current;
+            current = current.next;
+
+        }
+        previous.next = null;
+        return current;
+    }
+
+
+
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         //head is instance variable
@@ -44,9 +99,18 @@ public class SinglyLinkedList {
         second.next = third;
         third.next = fourth;
 
+        sll.insertFirst(11);
+        sll.insertLast(12);
+        ListNode temp = sll.deleteFirst();
+        ListNode temp1 = sll.deleteLast();
+        System.out.println(temp);
+        System.out.println(temp1);
+
+
         sll.display();
         int m = sll.length();
         System.out.println("length of singly linked list is " + m);
+
 
     }
 
