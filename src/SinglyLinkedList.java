@@ -83,6 +83,28 @@ public class SinglyLinkedList {
         return current;
     }
 
+    //to insert the value at the desired position
+    public  void insert(int position, int value){
+        ListNode node = new ListNode(value);
+        if(position==1){
+            node.next = head;
+            head = node;
+        }else{
+            ListNode previous = head;
+            int count = 1;
+            while (count < position-1){
+                previous = previous.next;
+                count++;
+            }
+            ListNode current = previous.next;
+            previous.next = node;
+            node.next = current;
+        }
+    }
+
+
+
+
 
 
 
@@ -99,8 +121,12 @@ public class SinglyLinkedList {
         second.next = third;
         third.next = fourth;
 
+        //Inserting
         sll.insertFirst(11);
         sll.insertLast(12);
+        sll.insert(3,8);
+
+        //Deleting
         ListNode temp = sll.deleteFirst();
         ListNode temp1 = sll.deleteLast();
         System.out.println(temp);
